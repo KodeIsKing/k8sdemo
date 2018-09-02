@@ -2,37 +2,37 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: timer-app-local
+  name: order-service-local
   labels:
-    app: timer-app
+    app: order-service
 spec:
   type: NodePort
   ports:
   - name: app-port
     port: 8080
   selector:
-    app: timer-app
+    app: order-service
 ---
 # Deployment configuration
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: timer-app-local
+  name: order-service-local
   labels:
-    app: timer-app
+    app: order-service
 spec:
   replicas: 0
   selector:
     matchLabels:
-      app: timer-app
+      app: order-service
   template:
     metadata:
       labels:
-        app: timer-app
+        app: order-service
     spec:
       containers:
-      - name: timer-app-local
-        image: docker.groupondev.com/venkb/timer-app-alpine:latest
+      - name: order-service-local
+        image: docker.groupondev.com/venkb/order-service:latest
         resources:
           requests:
             memory: "1Gi"
